@@ -2,7 +2,6 @@ import json
 import os
 import time
 import requests
-import os
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import threading
 
@@ -22,13 +21,6 @@ def run_health_check_server():
     server.serve_forever()
 
 threading.Thread(target=run_health_check_server, daemon=True).start()
-
-
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"Bot is alive!")
 
 def run_health_check_server():
     port = int(os.environ.get("PORT", 8080))
